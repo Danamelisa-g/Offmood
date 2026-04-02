@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "user": {
+      "name": "Sarah Chen",
+      "avatar": "https://i.pravatar.cc/150?img=1"
+    },
+    "time": "1 hr ago",
+    "feeling": "Sad",
+    "content": "Finally finished that project I've been working on!",
+    "likes": 24,
+    "shares": 1,
+    "comments": [
+      {
+        "user": "Maria Rios",
+        "text": "Congrats girl!"
+      }
+    ],
+    "image": null
+  },
+  {
+    "id": 2,
+    "user": {
+      "name": "Alex Rivera",
+      "avatar": "https://i.pravatar.cc/150?img=2"
+    },
+    "time": "3 hrs ago",
+    "feeling": "Anxious",
+    "content": "Spent the morning meditating by the lake.",
+    "likes": 58,
+    "shares": 7,
+    "comments": [],
+    "image": null
+  },
+  {
+    "id": 3,
+    "user": {
+      "name": "BocaLover",
+      "avatar": "https://i.pravatar.cc/150?img=3"
+    },
+    "time": "4 hrs ago",
+    "feeling": "Happy",
+    "content": "Tres a cero contra Lanús con doblete 🔵🟡",
+    "likes": 58800,
+    "shares": 10200,
+    "comments": [],
+    "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc"
+  }
+]
