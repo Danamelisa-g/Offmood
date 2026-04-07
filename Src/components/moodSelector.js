@@ -37,8 +37,35 @@ const moods = [
     }
 ];
 
-// Clave que se usará para guardar en localStorage
-const STORAGE_KEY = "selectedMood";
+// Clave general que se usará para guardar todo el historial de emociones
+// dentro de localStorage.
+const STORAGE_KEY = "moodHistory";
+
+/**
+ * Obtiene la fecha actual en formato YYYY-MM-DD.
+ * Este formato nos sirve como clave única para guardar
+ * la emoción correspondiente a cada día.
+ */
+function getTodayDate() {
+    return new Date().toISOString().split("T")[0];
+}
+
+/**
+ * Recupera el historial de emociones guardado en localStorage.
+ * Si no existe nada todavía, devuelve un objeto vacío.
+ */
+function getMoodHistory() {
+    const savedHistory = localStorage.getItem(STORAGE_KEY);
+    return savedHistory ? JSON.parse(savedHistory) : {};
+}
+
+/**
+ * Guarda el historial completo actualizado en localStorage.
+ * Recibe un objeto donde cada fecha tiene asociada una emoción.
+ */
+function saveMoodHistory(history) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+}
 
 // Esta función se encarga de renderizar el componente completo
 // dentro del contenedor .mood-container que ya existe en el HTML.
@@ -50,18 +77,22 @@ export function renderMoodSelector() {
     // para evitar errores en consola.
     if (!container) return;
 
-    // Recuperamos la emoción previamente guardada en localStorage.
-    // Si no existe ninguna, el valor será null.
-    const savedMood = localStorage.getItem(STORAGE_KEY);
+    // Recuperamos el historial completo de emociones.
+    const moodHistory = getMoodHistory();
+
+    // Obtenemos la fecha de hoy.
+    const today = getTodayDate();
+
+    // Buscamos si hoy ya tiene una emoción guardada.
+    const todayMood = moodHistory[today];
 
     // Recorremos el arreglo de emociones y por cada emoción
     // generamos una tarjeta en formato HTML.
-    // También guardamos el color en una variable CSS personalizada (--mood-color)
-    // para poder usarlo luego desde el archivo CSS.
-    // Si la emoción coincide con la guardada, se le agrega la clase active.
+    // Si la emoción coincide con la guardada para hoy,
+    // se le agrega la clase active.
     container.innerHTML = moods
         .map((mood) => {
-            const isActive = mood.key === savedMood;
+            const isActive = mood.key === todayMood;
 
             return `
         <div class="mood-card ${isActive ? "active" : ""}" data-mood="${mood.key}" style="--mood-color: ${mood.color};">
@@ -78,16 +109,22 @@ export function renderMoodSelector() {
     // A cada tarjeta le agregamos un evento click
     moodCards.forEach(card => {
         card.addEventListener("click", () => {
-            // Obtenemos la emoción asociada a la tarjeta clickeada
+            // Obtenemos la emoción asociada a la tarjeta clickeada.
             const selectedMood = card.dataset.mood;
 
-            // Guardamos la emoción seleccionada en localStorage
-            localStorage.setItem(STORAGE_KEY, selectedMood);
+            // Recuperamos el historial actual.
+            const updatedHistory = getMoodHistory();
 
-            // Quitamos la clase active de todas las tarjetas
+            // Guardamos o actualizamos la emoción de la fecha de hoy.
+            updatedHistory[today] = selectedMood;
+
+            // Persistimos el historial actualizado en localStorage.
+            saveMoodHistory(updatedHistory);
+
+            // Quitamos la clase active de todas las tarjetas.
             moodCards.forEach(c => c.classList.remove("active"));
 
-            // Agregamos la clase active solo a la tarjeta clickeada
+            // Agregamos la clase active solo a la tarjeta clickeada.
             card.classList.add("active");
         });
     });
