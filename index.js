@@ -7,7 +7,7 @@ console.log(faker.person.fullName());
 //moodSelector
 
 // Importamos la función que renderiza el componente de emociones
-import { renderMoodSelector } from "./Src/components/moodSelector.js";
+import { renderMoodSelector } from "./Src/components/moodSelector/moodSelector.js";
 
 // Llamamos la función para que el componente aparezca en pantalla
 renderMoodSelector();
