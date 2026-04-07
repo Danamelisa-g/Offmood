@@ -95,7 +95,7 @@ body {
 /* Estado seleccionado: mantiene el color de la emoción */
 .mood-card.active {
     border: 2px solid var(--mood-color);
-    box-shadow: 0 0 1px var(--mood-color);
+    box-shadow: 0 0 0.2px var(--mood-color);
 }
 
 

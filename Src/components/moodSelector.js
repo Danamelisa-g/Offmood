@@ -37,6 +37,9 @@ const moods = [
     }
 ];
 
+// Clave que se usará para guardar en localStorage
+const STORAGE_KEY = "selectedMood";
+
 // Esta función se encarga de renderizar el componente completo
 // dentro del contenedor .mood-container que ya existe en el HTML.
 export function renderMoodSelector() {
@@ -47,14 +50,21 @@ export function renderMoodSelector() {
     // para evitar errores en consola.
     if (!container) return;
 
+    // Recuperamos la emoción previamente guardada en localStorage.
+    // Si no existe ninguna, el valor será null.
+    const savedMood = localStorage.getItem(STORAGE_KEY);
+
     // Recorremos el arreglo de emociones y por cada emoción
     // generamos una tarjeta en formato HTML.
     // También guardamos el color en una variable CSS personalizada (--mood-color)
     // para poder usarlo luego desde el archivo CSS.
+    // Si la emoción coincide con la guardada, se le agrega la clase active.
     container.innerHTML = moods
         .map((mood) => {
+            const isActive = mood.key === savedMood;
+
             return `
-        <div class="mood-card" data-mood="${mood.key}" style="--mood-color: ${mood.color};">
+        <div class="mood-card ${isActive ? "active" : ""}" data-mood="${mood.key}" style="--mood-color: ${mood.color};">
             <img src="${mood.img}" alt="${mood.label}">
             <p class="mood-label">${mood.label}</p>
         </div>`;
@@ -68,13 +78,17 @@ export function renderMoodSelector() {
     // A cada tarjeta le agregamos un evento click
     moodCards.forEach(card => {
         card.addEventListener("click", () => {
+            // Obtenemos la emoción asociada a la tarjeta clickeada
+            const selectedMood = card.dataset.mood;
 
-            // 1. quitar active de todas
+            // Guardamos la emoción seleccionada en localStorage
+            localStorage.setItem(STORAGE_KEY, selectedMood);
+
+            // Quitamos la clase active de todas las tarjetas
             moodCards.forEach(c => c.classList.remove("active"));
 
-            // 2. agregar active a la clickeada
+            // Agregamos la clase active solo a la tarjeta clickeada
             card.classList.add("active");
-
         });
     });
 }
