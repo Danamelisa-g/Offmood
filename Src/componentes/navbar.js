@@ -1,4 +1,5 @@
 export class OffmoodNavbar {
+     // Constructor: se ejecuta cuando se crea una instancia de la clase
     constructor(){
          this.currentActive = 'home';
 
@@ -31,37 +32,34 @@ export class OffmoodNavbar {
  
             </nav>
         `;
+         // Se crea un elemento <template> para convertir el string HTML en nodo DOM
             const template = document.createElement('template');
+        // Se asigna el HTML al template
         template.innerHTML = html.trim();
+          // Se retorna el primer elemento hijo del template
         return template.content.firstChild;
     }
+    // Método para configurar la navegación
     setupNavigation(navbarElement) {
+        // Selecciona todos los items del navbar
         const items = navbarElement.querySelectorAll('.navbar-item');
- 
+  // Se recorre cada item
         items.forEach(item => {
+            // Se agrega evento click a cada item
             item.addEventListener('click', () => {
+                 // Se elimina la clase 'active' de todos
                 items.forEach(i => i.classList.remove('active'));
+                // Se añade 'active' al item seleccionado
                 item.classList.add('active');
- 
+ // Se obtiene la ruta desde el atributo data-route
                 const route = item.getAttribute('data-route');
-                if (route) navigate(route);
+                
             });
         });
     }
  
 }
 
-function navigate(route) {
-    const event = new CustomEvent('navigate', {
-        detail: route,
-        bubbles: true,
-        composed: true
-    });
-    document.dispatchEvent(event);
- 
-    if (window.history && window.history.pushState) {
-        window.history.pushState(null, '', route);
-    }
-}
- 
+
+// Exportación por defecto de la clase
 export default OffmoodNavbar;

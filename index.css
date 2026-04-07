@@ -10,9 +10,7 @@ body {
     min-height: 100vh;
 }
  
-/* ===========================
-   Layout principal
-   =========================== */
+/* Layout principal */
  
 .app-layout {
     display: flex;
@@ -25,7 +23,7 @@ body {
     overflow-y: auto;
 }
  
-/* En mobile agrega espacio abajo para que la navbar no tape el contenido */
+/* parte del mobile para que no tape la infor del contedor  */
 @media (max-width: 768px) {
     .main-content {
         padding: 16px;
@@ -33,9 +31,7 @@ body {
     }
 }
  
-/* ===========================
-   SIDEBAR - Desktop
-   =========================== */
+/* aqui va el sidebar y su css */
  
 .sidebar {
     display: flex;
@@ -63,7 +59,7 @@ body {
 }
  
 .sidebar-logo-icon {
-    width: 36px;
+    width: 316px;
     height: 24px;
 }
  
@@ -73,7 +69,7 @@ body {
     color: #222;
 }
  
-/* Menu del centro - ocupa todo el espacio disponible */
+/* Menu del centro ocupa todo el espacio disponible */
 .sidebar-menu {
     flex: 1;
     display: flex;
@@ -100,7 +96,7 @@ body {
     color: #555;
 }
  
-/* Item activo: linea azul a la izquierda */
+/* Item activo linea azul a la izquierda */
 .sidebar-item.active {
     color: #2196f3;
     border-left: 3px solid #2196f3;
@@ -196,9 +192,7 @@ body {
     color: #555;
 }
  
-/* ===========================
-   NAVBAR - Mobile (abajo)
-   =========================== */
+/*aqui comienza el navbar para movile*/
  
 .navbar {
     display: none; /* oculto en desktop */

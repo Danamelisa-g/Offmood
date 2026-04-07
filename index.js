@@ -36,20 +36,7 @@ class App {
         });
     }
  
-    loadPage(route) {
-        if (route === '/home' || route === '/') {
-            mainContent.innerHTML = '<p>Pagina de Feed</p>';
-        } else if (route === '/emotions') {
-            mainContent.innerHTML = '<p>Pagina de Emotion History</p>';
-        } else if (route === '/profile') {
-            mainContent.innerHTML = '<p>Pagina de Perfil</p>';
-        } else if (route === '/create') {
-            mainContent.innerHTML = '<p>Crear nuevo post</p>';
-        } else {
-            mainContent.innerHTML = '<p>Pagina no encontrada</p>';
-        }
-    }
- 
+    
     init() {
         this.renderSidebar();
         this.renderNavbar();
