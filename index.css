@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #F3F0EB;
+    background-color: #F3F0EB; 
     margin: 40px 0px;
 }
 
@@ -136,7 +136,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     gap: 18px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .week-day {
@@ -180,4 +180,19 @@ body {
     color: #111111;
     margin: 0;
     text-transform: lowercase;
+}
+
+
+/*RESPONSIVE - PHONE*/
+@media (max-width: 768px) {
+    body {
+        margin: 40px 0;
+    }
+
+    #mood-selector {
+        width: calc(100% - 32px);
+        margin: 0 auto;
+        border-radius: 24px;
+    }
+
 }
