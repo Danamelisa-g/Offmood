@@ -43,8 +43,6 @@ const STORAGE_KEY = "moodHistory";
 
 /**
  * Obtiene la fecha actual en formato YYYY-MM-DD.
- * Este formato nos sirve como clave única para guardar
- * la emoción correspondiente a cada día.
  */
 function getTodayDate() {
     return new Date().toISOString().split("T")[0];
@@ -61,10 +59,93 @@ function getMoodHistory() {
 
 /**
  * Guarda el historial completo actualizado en localStorage.
- * Recibe un objeto donde cada fecha tiene asociada una emoción.
  */
 function saveMoodHistory(history) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+}
+
+/**
+ * Devuelve la emoción completa a partir de su key.
+ * Esto sirve para buscar imagen y color de una emoción guardada.
+ */
+function getMoodByKey(key) {
+    return moods.find((mood) => mood.key === key);
+}
+
+/**
+ * Genera un arreglo con los 7 días de la semana actual.
+ * La semana empieza en domingo.
+ * Cada día incluye:
+ * - label: nombre corto visible (sun, mon, etc.)
+ * - date: fecha en formato YYYY-MM-DD
+ */
+function getCurrentWeekDates() {
+    const today = new Date();
+    const currentDay = today.getDay(); // 0 = domingo, 1 = lunes, etc.
+
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - currentDay);
+
+    const dayLabels = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+    const week = [];
+
+    for (let i = 0; i < 7; i++) {
+        const currentDate = new Date(startOfWeek);
+        currentDate.setDate(startOfWeek.getDate() + i);
+
+        week.push({
+            label: dayLabels[i],
+            date: currentDate.toISOString().split("T")[0]
+        });
+    }
+
+    return week;
+}
+
+/**
+ * Renderiza la sección de historial semanal.
+ * Si hoy no tiene emoción registrada, no muestra todavía la sección.
+ */
+function renderWeekHistory() {
+    const historyContainer = document.querySelector(".week-history");
+    if (!historyContainer) return;
+
+    const moodHistory = getMoodHistory();
+    const today = getTodayDate();
+    const todayMood = moodHistory[today];
+
+    // Si todavía no hay emoción registrada hoy,
+    // no mostramos el historial semanal.
+    if (!todayMood) {
+        historyContainer.innerHTML = "";
+        return;
+    }
+
+    const weekDates = getCurrentWeekDates();
+
+    historyContainer.innerHTML = `
+        <div class="week-history-divider"></div>
+        <h3 class="week-history-title">Your week so far</h3>
+        <div class="week-history-days">
+            ${weekDates.map((day) => {
+                const savedMoodKey = moodHistory[day.date];
+                const savedMood = getMoodByKey(savedMoodKey);
+
+                return `
+                    <div class="week-day">
+                        <div class="week-day-circle">
+                            ${
+                                savedMood
+                                    ? `<img src="${savedMood.img}" alt="${savedMood.label}">`
+                                    : `<span class="week-day-dot"></span>`
+                            }
+                        </div>
+                        <p class="week-day-label">${day.label}</p>
+                    </div>
+                `;
+            }).join("")}
+        </div>
+    `;
 }
 
 // Esta función se encarga de renderizar el componente completo
@@ -86,10 +167,7 @@ export function renderMoodSelector() {
     // Buscamos si hoy ya tiene una emoción guardada.
     const todayMood = moodHistory[today];
 
-    // Recorremos el arreglo de emociones y por cada emoción
-    // generamos una tarjeta en formato HTML.
-    // Si la emoción coincide con la guardada para hoy,
-    // se le agrega la clase active.
+    // Renderizamos las tarjetas de emociones.
     container.innerHTML = moods
         .map((mood) => {
             const isActive = mood.key === todayMood;
@@ -101,6 +179,9 @@ export function renderMoodSelector() {
         </div>`;
         })
         .join("");
+
+    // Renderizamos el historial semanal según el estado actual.
+    renderWeekHistory();
 
     // Después de renderizar el HTML, seleccionamos todas las tarjetas
     // para poder agregarles el evento click.
@@ -126,6 +207,10 @@ export function renderMoodSelector() {
 
             // Agregamos la clase active solo a la tarjeta clickeada.
             card.classList.add("active");
+
+            // Volvemos a renderizar el historial semanal
+            // para reflejar inmediatamente el cambio.
+            renderWeekHistory();
         });
     });
 }
