@@ -16,11 +16,26 @@ export class Post {
     this.feeling  = data.feeling;
     this.content  = data.content;
     this.shares   = data.shares;
+    
+///
 
-    // Likes: leer desde localStorage o usar el valor del JSON
     const savedLikes = localStorage.getItem(`post_likes_${this.id}`);
-    this.likes = savedLikes !== null ? parseInt(savedLikes) : data.likes;
-    this.liked = localStorage.getItem(`post_liked_${this.id}`) === 'true';
+    const savedBaseLikes = localStorage.getItem(`post_base_likes_${this.id}`);
+
+    // 🔁 si el JSON cambió
+    if (savedBaseLikes === null || parseInt(savedBaseLikes) !== data.likes) {
+      this.likes = data.likes;
+
+      // 👇 RESET TOTAL
+      this.liked = false;
+
+      localStorage.setItem(`post_base_likes_${this.id}`, data.likes);
+      localStorage.setItem(`post_likes_${this.id}`, this.likes);
+      localStorage.setItem(`post_liked_${this.id}`, this.liked);
+    } else {
+      this.likes = parseInt(savedLikes);
+      this.liked = localStorage.getItem(`post_liked_${this.id}`) === 'true';
+    }
 
     // Comentarios: combinar los del JSON con los guardados en localStorage
     const savedComments = JSON.parse(localStorage.getItem(`post_comments_${this.id}`) || '[]');
