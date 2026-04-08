@@ -1,0 +1,51 @@
+.navbar {
+    display: none; /* oculto en desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 10px 0;
+    z-index: 100;
+    justify-content: space-around;
+    align-items: center;
+}
+ 
+/* Solo se muestra en mobile */
+@media (max-width: 768px) {
+    .navbar {
+        display: flex;
+    }
+}
+ 
+/* Cada boton de la navbar */
+.navbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 6px 16px;
+    border-radius: 10px;
+    color: #aaa;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+ 
+.navbar-item:hover {
+    color: #2196f3;
+    background-color: rgba(33, 150, 243, 0.08);
+}
+ 
+.navbar-item.active {
+    color: #2196f3;
+    font-weight: 500;
+}
+ 
+/* Icono de la navbar */
+.navbar-icon {
+    width: 26px;
+    height: 26px;
+}
+ 
