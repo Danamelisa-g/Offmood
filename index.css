@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*Fonts*/
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #F3F0EB;
+    margin: 0px 0px;
+}
+
+.highlightText {
+    font-family: 'Lobster', cursive;
+    color: #00B3FC;
+    font-weight: 400;
+}
+
+/* Layout principal */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px 24px;
+    overflow-y: auto;
+}
+
+/* En mobile agrega espacio para que la navbar no tape el contenido */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 16px;
+        padding-bottom: 80px;
+    }
+}
