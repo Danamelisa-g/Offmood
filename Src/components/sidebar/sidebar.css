@@ -2,10 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 220px;
-    min-height: 100vh;
     background-color: #FAF7F0;
     padding: 20px 12px;
     border-radius: 0px 20px 20px 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px; /* o el que uses */
 }
 
 /* Ocultar en mobile */

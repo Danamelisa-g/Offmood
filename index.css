@@ -27,13 +27,32 @@ body {
 .main-content {
     flex: 1;
     padding: 40px 24px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 220px; /* mismo ancho del sidebar */
+    padding: 40px 24px;
+}
+
+
+.content-card {
+    width: 100%;
+    max-width: 630px; /* ajusta según tu diseño */
+    background-color: #F3F0EB;
+    border-radius: 20px;
+    max-width: 100%;
+
+}
+
+#postContainer {
+    margin-top: 30px;
 }
 
 /* En mobile agrega espacio para que la navbar no tape el contenido */
 @media (max-width: 768px) {
     .main-content {
-        padding: 16px;
+        padding: 20px;
         padding-bottom: 80px;
+        margin-left: auto;
     }
 }

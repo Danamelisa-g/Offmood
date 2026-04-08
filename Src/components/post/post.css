@@ -1,7 +1,7 @@
 /* ── Variables ─────────────────────────────────── */
 :root {
   --bg:          #e8e6e1;
-  --card:        #ffffff;
+  --card:        #F3F0EB;
   --text:        #1a1a1a;
   --text-muted:  #888888;
   --border:      #ebebeb;
@@ -36,11 +36,11 @@
 
 /* ── Post card ─────────────────────────────────── */
 .post {
-  background: var(--card);
+  background: #FAF7F0;
   border-radius: var(--radius-card);
   padding: 20px;
   margin-bottom: 16px;
-  box-shadow: var(--shadow);
+  box-shadow: none;
   font-family: 'DM Sans', sans-serif;
   animation: fadeUp 0.35s ease both;
 }
@@ -195,6 +195,7 @@
   color: var(--text);
   display: flex;
   gap: 6px;
+  
 }
 
 .post__comment-author {
@@ -225,16 +226,25 @@
 
 .post__comment-input {
   flex: 1;
-  border: none;
-  background: #f5f5f5;
+  appearance: none;
+  -webkit-appearance: none;
+
+  background: #FAF7F0;
+  border: 1px solid #bbb;
   border-radius: 999px;
+
   padding: 8px 14px;
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   color: var(--text);
   outline: none;
-  transition: background 0.2s;
+  box-shadow: none;
 }
 
 .post__comment-input::placeholder { color: #bbb; }
-.post__comment-input:focus        { background: #efefef; }
+.post__comment-input:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background: #FAF7F0;
+}

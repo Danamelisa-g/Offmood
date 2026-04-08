@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./index.css">
 
     <!-- Estilos de posts -->
-    <link rel="stylesheet" href="./Src/styles/post.css">
+    <link rel="stylesheet" href="./Src/components/post/post.css">
 
     <!-- Estilos de cada componente -->
     <link rel="stylesheet" href="./Src/components/sidebar/sidebar.css">
@@ -23,13 +23,13 @@
 <body>
     <div class="app-layout" id="app-layout">
         <main class="main-content" id="main-content">
-            <section id="mood-selector">
+            <section id="mood-selector" class="content-card">
                 <h2 class="mood-title">How are you <span class="highlightText">feeling</span> today?</h2>
                 <div class="mood-container"></div>
                 <div class="week-history"></div>
             </section>
 
-            <section id="postContainer"></section>
+            <section id="postContainer" class="content-card"></section>
         </main>
     </div>
 

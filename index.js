@@ -2,8 +2,8 @@ import { offmoodsidebar } from './Src/components/sidebar/sidebar.js';
 import { OffmoodNavbar } from './Src/components/navbar/navbar.js';
 import { renderMoodSelector } from "./Src/components/moodSelector/moodSelector.js";
 
-import Post from './Src/components/post.js';
-import PostImage from './Src/components/postImage.js';
+import Post from './Src/components/post/post.js';
+import PostImage from './Src/components/post/postImage.js';
 
 const appLayout = document.getElementById('app-layout');
 const mainContent = document.getElementById('main-content');
