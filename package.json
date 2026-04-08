@@ -14,17 +14,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Danamelisa-g/Offmood/issues"
   },
   "homepage": "https://github.com/Danamelisa-g/Offmood#readme",
   "dependencies": {
-    "@faker-js/faker": "^10.4.0",
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "live-server": "^1.2.2"
   }
-  
 }
-
