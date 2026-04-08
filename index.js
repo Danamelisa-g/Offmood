@@ -1,7 +1,7 @@
 
  
-import { offmoodsidebar } from './src/componentes/sidebar.js';
-import { OffmoodNavbar } from './src/componentes/navbar.js';
+import { offmoodsidebar } from './src/components/sidebar.js';
+import { OffmoodNavbar } from './src/components/navbar.js';
  
 // Estos IDs ahora si existen en el index.html
 const appLayout = document.getElementById('app-layout');
@@ -19,7 +19,7 @@ class App {
         appLayout.insertBefore(sidebarElement, mainContent);
         this.sidebar.setupNavigation();
     }
- 
+
     renderNavbar() {
         const navbarElement = this.navbar.render();
         document.body.appendChild(navbarElement);
