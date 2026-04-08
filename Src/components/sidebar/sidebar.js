@@ -1,16 +1,16 @@
 //definos la clase del componenete sidebar
 export class offmoodsidebar {
 
- // Método que se encarga de crear y renderizar el sidebar en el DOM
+    // Método que se encarga de crear y renderizar el sidebar en el DOM
     render() {
         // Se crea un elemento <aside> que será el contenedor principal del sidebar
         const sidebar = document.createElement('aside');
-          // Aqui le asignamos una clase al css para los estilo
+        // Aqui le asignamos una clase al css para los estilo
         sidebar.className = 'sidebar';
- // Se define el contenido interno del sidebar usando template literals
+        // Se define el contenido interno del sidebar usando template literals
         sidebar.innerHTML = `
             <div class="sidebar-logo">
-                <img src="./src/assets/Frame 20.png" alt="offmood logo" class="sidebar-logo-icon">
+                <img src="./Src/assets/Frame 20.png" alt="offmood logo" class="sidebar-logo-icon">
                 
             </div>
  
@@ -55,36 +55,36 @@ export class offmoodsidebar {
  
             </div>
         `;
- // Se guarda el elemento creado en la propiedad this.element
+        // Se guarda el elemento creado en la propiedad this.element
         this.element = sidebar;
         // Se retorna el sidebar para poder insertarlo en el DOM 
         return sidebar;
     }
- // Método para configurar la navegación (eventos de click)
+    // Método para configurar la navegación (eventos de click)
     setupNavigation() {
         // Se seleccionan todos los items del menú
         const items = this.element.querySelectorAll('.sidebar-item');
-  // Se recorre cada item para agregarle un evento de click
-        items.forEach(item => {item.addEventListener('click', () => {
-            // Se elimina la clase 'active' de todos los items
-            items.forEach(i => i.classList.remove('active'));
-            // Se añade la clase 'active' al item clickeado
+        // Se recorre cada item para agregarle un evento de click
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                // Se elimina la clase 'active' de todos los items
+                items.forEach(i => i.classList.remove('active'));
+                // Se añade la clase 'active' al item clickeado
                 item.classList.add('active');
-            // Se navega a la ruta definida en data-route
+                // Se navega a la ruta definida en data-route
                 navigate(item.getAttribute('data-route'));
             });
         });
- // Evento para el botón "Create Post" esto es 
+        // Evento para el botón "Create Post" esto es 
         this.element.querySelector('.sidebar-btn-create')
             .addEventListener('click', () => navigate('/create'));
- //evento para ir a perfil no funciona paorque le quite la ruta :)
+        //evento para ir a perfil no funciona paorque le quite la ruta :)
         this.element.querySelector('.sidebar-profile')
             .addEventListener('click', () => navigate('/profile'));
- //evento para cerrar o salir
+        //evento para cerrar o salir
         this.element.querySelector('#logout-btn')
             .addEventListener('click', () => navigate('/logout'));
     }
 }
 // Se exporta la clase como exportación por defecto
 export default offmoodsidebar;
- 

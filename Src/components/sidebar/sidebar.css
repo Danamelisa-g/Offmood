@@ -3,17 +3,18 @@
     flex-direction: column;
     width: 220px;
     min-height: 100vh;
-    background-color: #f0f0ec;
+    background-color: #FAF7F0;
     padding: 20px 12px;
+    border-radius: 0px 20px 20px 0px;
 }
- 
+
 /* Ocultar en mobile */
 @media (max-width: 768px) {
     .sidebar {
         display: none;
     }
 }
- 
+
 /* Logo */
 .sidebar-logo {
     display: flex;
@@ -22,18 +23,18 @@
     padding: 8px 10px;
     margin-bottom: 24px;
 }
- 
+
 .sidebar-logo-icon {
     width: 200px;
     height: auto;
 }
- 
+
 .sidebar-logo-text {
     font-size: 18px;
     font-weight: bold;
     color: #222;
 }
- 
+
 /* Menu del centro - ocupa todo el espacio disponible */
 .sidebar-menu {
     flex: 1;
@@ -41,7 +42,7 @@
     flex-direction: column;
     gap: 4px;
 }
- 
+
 /* Item del menu */
 .sidebar-item {
     display: flex;
@@ -55,26 +56,26 @@
     border-left: 3px solid transparent;
     transition: background 0.2s;
 }
- 
+
 .sidebar-item:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: #555;
 }
- 
+
 /* Item activo: linea azul a la izquierda */
 .sidebar-item.active {
     color: #2196f3;
     border-left: 3px solid #2196f3;
     font-weight: 500;
 }
- 
+
 /* Icono del menu */
 .sidebar-icon {
     width: 22px;
     height: 22px;
     flex-shrink: 0;
 }
- 
+
 /* Boton Create Post */
 .sidebar-btn-create {
     display: flex;
@@ -91,11 +92,11 @@
     width: 100%;
     font-family: sans-serif;
 }
- 
+
 .sidebar-btn-create:hover {
     background-color: #1976d2;
 }
- 
+
 /* Seccion de abajo: perfil y logout */
 .sidebar-bottom {
     border-top: 1px solid #ddd;
@@ -105,7 +106,7 @@
     flex-direction: column;
     gap: 4px;
 }
- 
+
 /* Fila de perfil */
 .sidebar-profile {
     display: flex;
@@ -115,11 +116,11 @@
     border-radius: 8px;
     cursor: pointer;
 }
- 
+
 .sidebar-profile:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
- 
+
 /* Circulo con iniciales */
 .sidebar-avatar {
     width: 32px;
@@ -134,12 +135,12 @@
     font-weight: 500;
     flex-shrink: 0;
 }
- 
+
 .sidebar-profile-name {
     font-size: 14px;
     color: #444;
 }
- 
+
 /* Fila de logout */
 .sidebar-logout {
     display: flex;
@@ -151,7 +152,7 @@
     color: #888;
     font-size: 14px;
 }
- 
+
 .sidebar-logout:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: #555;

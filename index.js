@@ -1,5 +1,5 @@
-import { offmoodsidebar } from './Src/components/sidebar.js';
-import { OffmoodNavbar } from './Src/components/navbar.js';
+import { offmoodsidebar } from './Src/components/sidebar/sidebar.js';
+import { OffmoodNavbar } from './Src/components/navbar/navbar.js';
 
 // Importamos la función que renderiza el componente de emociones
 import { renderMoodSelector } from "./Src/components/moodSelector/moodSelector.js";
@@ -32,11 +32,11 @@ class App {
 
     setupRouting() {
         document.addEventListener('navigate', (event) => {
-            this.loadPage(event.detail);
+            //this.loadPage(event.detail);
         });
 
         window.addEventListener('popstate', () => {
-            this.loadPage(window.location.pathname);
+            //this.loadPage(window.location.pathname);
         });
     }
 
@@ -48,7 +48,7 @@ class App {
         // Renderiza el componente de emociones una vez que la estructura principal ya existe
         renderMoodSelector();
 
-        this.loadPage(window.location.pathname || '/home');
+        //this.loadPage(window.location.pathname || '/home');
     }
 }
 
