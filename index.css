@@ -1,0 +1,13 @@
+/*Fonts*/
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #F3F0EB; 
+    margin: 40px 0px;
+}
+
+.highlightText {
+    font-family: 'Lobster', cursive;
+    color: #00B3FC;
+    font-weight: 400;
+}
